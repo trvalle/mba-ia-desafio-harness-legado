@@ -17,7 +17,9 @@ if (!['up', 'down', 'status'].includes(command)) {
 fs.mkdirSync(dir, { recursive: true })
 const project = `balcao-${createHash('sha256').update(root).digest('hex').slice(0, 16)}`
 let docker
-for (const candidate of ['docker', ...(process.env.WSL_DISTRO_NAME ? ['docker.exe'] : [])]) {
+// Docker Desktop without distro integration cannot resolve /mnt/<drive> bind paths.
+// Its Windows client plus wslpath keeps the announced host upload directory real.
+for (const candidate of process.env.WSL_DISTRO_NAME ? ['docker.exe', 'docker'] : ['docker']) {
   if (spawnSync(candidate, ['info'], { stdio: 'ignore' }).status === 0) { docker = candidate; break }
 }
 if (!docker) throw new Error('Docker indisponível. Inicie Docker e habilite a integração WSL, se aplicável.')

@@ -12,10 +12,16 @@ const cases = mode === 'own' ? [
   { rule: 'G11', files: { 'web/src/mutacao-endereco.ts': fixture('G11-endpoint-fixo.ts.modelo') } },
   { rule: 'G12', files: { 'api/src/domain/mutacao-infraestrutura.ts': fixture('G12-dominio-infraestrutura.ts.modelo') } },
 ] : [
+  { rule: 'G1', files: { 'api/src/domain/mutacao-declaracao.d.ts': "export interface Revisao extends TipoInexistente { valor: string }\n" } },
+  { rule: 'G1', files: { 'web/src/mutacao-declaracao.d.ts': "export interface Revisao extends TipoInexistente { valor: string }\n" } },
+  { rule: 'G1', files: { 'web/mutacao-config.ts': "export const quantidade: number = 'incorreta'\n" } },
   { rule: 'G4', files: { 'api/src/http/routes/mutacao-reexport.ts': "export type { TicketRepository } from '../../repositories/ticket-repository'\n" } },
   { rule: 'G5', files: { 'api/src/services/mutacao-env-computado.ts': "export const modo = process['env'].AI_MODE\n" } },
   { rule: 'G5', files: { 'web/src/mutacao-env-computado.ts': "export const modo = import.meta['env'].MODE\n" } },
+  { rule: 'G5', files: { 'api/src/services/mutacao-env-chave-constante.ts': "const chave = 'env' as const\nexport const modo = process[chave].AI_MODE\n" } },
+  { rule: 'G5', files: { 'web/src/mutacao-env-chave-constante.ts': "const chave = 'env' as const\nexport const modo = import.meta[chave].MODE\n" } },
   { rule: 'G5', files: { 'api/src/services/mutacao-env-desestruturado.ts': "const { env: ambiente } = process\nexport const modo = ambiente.AI_MODE\n" } },
+  { rule: 'G5', files: { 'api/src/services/mutacao-env-chave-desestruturada.ts': "const chave = 'env' as const\nconst { [chave]: ambiente } = process\nexport const modo = ambiente.AI_MODE\n" } },
   { rule: 'G6', files: { 'api/src/services/mutacao-tipo-importado.ts': "export type Requisicao = import('express').Request\n" } },
   { rule: 'G7', files: { 'api/src/services/mutacao-import-dinamico.ts': "export async function carregar() { return import('openai') }\n" } },
   { rule: 'G8', files: { 'web/src/mutacao-tipo-backend.ts': "export type Pessoa = import('../../api/src/domain/ticket').CurrentUser\n" } },
@@ -27,6 +33,8 @@ const cases = mode === 'own' ? [
     'api/src/services/mutacao-export-tipo.ts': "export type TipoAbandonado = { id: string }\nexport const usado = 2\n",
     'api/src/services/mutacao-export-tipo.test.ts': "import { expect, it } from 'vitest'\nimport { usado } from './mutacao-export-tipo'\nit('consome valor', () => expect(usado).toBe(2))\n",
   } },
+  { rule: 'G10', files: { 'api/scripts/mutacao-arquivo-sem-uso.ts': "export const abandonado = 1\n" } },
+  { rule: 'G10', files: { 'web/scripts/mutacao-arquivo-sem-uso.ts': "export const abandonado = 1\n" } },
 ]
 const baseline = run()
 if (baseline.status !== 0) {
@@ -35,9 +43,12 @@ if (baseline.status !== 0) {
 }
 let failed = false
 const temporaryFiles = new Set()
+const temporaryDirectories = new Set()
 function cleanUp() {
   for (const file of temporaryFiles) if (fs.existsSync(file)) fs.unlinkSync(file)
   temporaryFiles.clear()
+  for (const directory of [...temporaryDirectories].reverse()) if (fs.existsSync(directory) && fs.readdirSync(directory).length === 0) fs.rmdirSync(directory)
+  temporaryDirectories.clear()
 }
 process.on('exit', cleanUp)
 process.on('SIGINT', () => process.exit(130))
@@ -48,6 +59,16 @@ for (const test of cases) {
     for (const [filename, content] of Object.entries(test.files)) {
       const target = path.join(root, filename)
       if (fs.existsSync(target)) throw new Error(`Arquivo já existe, preservado: ${filename}`)
+      const missing = []
+      let parent = path.dirname(target)
+      while (!fs.existsSync(parent)) {
+        missing.unshift(parent)
+        parent = path.dirname(parent)
+      }
+      for (const directory of missing) {
+        fs.mkdirSync(directory)
+        temporaryDirectories.add(directory)
+      }
       fs.writeFileSync(target, content, { flag: 'wx' })
       created.push(target)
       temporaryFiles.add(target)

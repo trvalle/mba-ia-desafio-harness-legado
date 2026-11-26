@@ -43,9 +43,16 @@ function typecheck(project) {
   const parsed = ts.parseJsonConfigFileContent(config.config, ts.sys, path.dirname(configPath), undefined, configPath)
   compilerOptions.set(project, parsed.options)
   // Explicit source enumeration keeps future files covered even after a narrow include.
-  const files = [...new Set([...parsed.fileNames, ...sourceFiles.filter(file => relative(file).startsWith(`${project}/`))])]
-  const program = ts.createProgram(files, { ...parsed.options, noEmit: true, allowJs: true, checkJs: true })
-  for (const diagnostic of [...parsed.errors, ...ts.getPreEmitDiagnostics(program)]) {
+  const files = [...new Set([...parsed.fileNames, ...projectFiles.filter(file => relative(file).startsWith(`${project}/`))])]
+  const program = ts.createProgram(files, { ...parsed.options, noEmit: true, allowJs: true, checkJs: true, skipLibCheck: false })
+  // Check every owned declaration too; skipLibCheck would hide errors in src/*.d.ts.
+  // External node_modules declarations are dependencies, not application sources.
+  const owned = new Set(projectFiles)
+  const diagnostics = [...parsed.errors, ...program.getOptionsDiagnostics(), ...program.getGlobalDiagnostics()]
+  for (const source of program.getSourceFiles()) {
+    if (owned.has(path.resolve(source.fileName))) diagnostics.push(...program.getSyntacticDiagnostics(source), ...program.getSemanticDiagnostics(source))
+  }
+  for (const diagnostic of diagnostics) {
     const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, ' ')
     report('G1', diagnostic.file?.fileName ?? configPath, `TS${diagnostic.code} ${message}`)
   }
@@ -96,9 +103,9 @@ function staticText(node, constants = new Map(), seen = new Set()) {
   }
   return undefined
 }
-function member(node) {
+function member(node, constants = new Map()) {
   if (ts.isPropertyAccessExpression(node)) return { target: node.expression, name: node.name.text }
-  if (ts.isElementAccessExpression(node)) return { target: node.expression, name: staticText(node.argumentExpression) }
+  if (ts.isElementAccessExpression(node)) return { target: node.expression, name: staticText(node.argumentExpression, constants) }
   return undefined
 }
 function packageIs(specifier, name) {
@@ -138,7 +145,7 @@ function architecture() {
         if (constants.has(node.text) && !seen.has(node.text)) return isProcess(constants.get(node.text), new Set([...seen, node.text]))
       }
       if (ts.isParenthesizedExpression(node) || ts.isAsExpression(node) || ts.isNonNullExpression(node)) return isProcess(node.expression, seen)
-      const access = member(node)
+      const access = member(node, constants)
       if (access?.name === 'process' && ts.isIdentifier(access.target) && ['globalThis', 'global'].includes(access.target.text)) return true
       return ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.expression.text === 'require' && ['process', 'node:process'].includes(staticText(node.arguments[0], constants))
     }
@@ -177,10 +184,13 @@ function architecture() {
         if (specifier !== undefined) importEdge(specifier)
       }
       if (inSource && !isConfig) {
-        const access = member(node)
+        const access = member(node, constants)
         if (access?.name === 'env' && ((project === 'api' && isProcess(access.target)) || (project === 'web' && isImportMeta(access.target)))) report('G5', file, 'Ambiente acessado fora de config')
         if (ts.isVariableDeclaration(node) && ts.isObjectBindingPattern(node.name) && node.initializer && ((project === 'api' && isProcess(node.initializer)) || (project === 'web' && isImportMeta(node.initializer)))) {
-          if (node.name.elements.some(binding => (binding.propertyName ?? binding.name).getText(source).replaceAll(/['"]/g, '') === 'env')) report('G5', file, 'Ambiente desestruturado fora de config')
+          if (node.name.elements.some(binding => {
+            const key = binding.propertyName ?? binding.name
+            return (ts.isComputedPropertyName(key) ? staticText(key.expression, constants) : key.getText(source).replaceAll(/['"]/g, '')) === 'env'
+          })) report('G5', file, 'Ambiente desestruturado fora de config')
         }
         if (ts.isStringLiteralLike(node)) {
           if (/(?:https?:\/\/(?:localhost|127(?:\.\d+){3}|\[::1\])(?::\d+)?(?:\/|$)|^(?:\/tmp|\/var\/tmp)\/.*(?:upload|anexo))/i.test(node.text)) report('G11', file, 'Recurso local fixo fora de config')

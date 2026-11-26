@@ -10,7 +10,7 @@ erros no código. Aguarde a subida terminar e execute novamente.
 
 | Regra | Verificação | Implementação |
 |---|---|---|
-| G1 | Tipos da API e do front | API do compilador TypeScript; inclui explicitamente todo `src/` |
+| G1 | Tipos da API e do front | API TypeScript; todos os arquivos próprios, configurações e declarações `.d.ts` |
 | G2 | Lint sem avisos, variáveis/imports sem uso, `any` explícito | ESLint + typescript-eslint, sem diretivas inline |
 | G3 | Todos os testes `api/src/**/*.test.ts` | Vitest, relatório JSON de cada suíte |
 | G4 | HTTP não importa Prisma nem repositórios | AST TypeScript e resolução de módulos |
@@ -24,6 +24,10 @@ erros no código. Aguarde a subida terminar e execute novamente.
 | G12 | Domínio independente de infraestrutura | Imports de `api/src/domain/` só podem apontar para o próprio domínio |
 
 Os arquivos-fonte são enumerados integralmente. Não há supressões de resultados.
+G1 desativa `skipLibCheck` e consulta diagnósticos de cada arquivo próprio,
+incluindo declarações em `src/`; não cobra tipos de bibliotecas em `node_modules`.
+G10 usa glob recursivo em cada aplicação, incluindo scripts fora de `src/`;
+dependências instaladas e resultados de build ignorados pelo Git não são fontes.
 Parâmetros de framework com prefixo `_` podem ser omitidos pelo lint de parâmetros
 sem uso, por exemplo a quarta posição exigida pelo middleware de erro do Express;
 essa convenção não permite variáveis ou imports locais sem uso.
@@ -59,7 +63,8 @@ arquivos existentes. Aplique manualmente uma fixture copiando-a para
 somente o arquivo que criou.
 
 `npm run gates:adversarial` cobre formas adicionais: reexport, ambiente computado
-e desestruturado, import inline de tipo, import dinâmico, ciclo só de tipos e
+com literais ou chaves constantes (API e front), desestruturação com chave
+constante, import inline de tipo, import dinâmico, ciclo só de tipos e
 export de tipo abandonado em um módulo utilizado.
 
 O kit oficial é executado em árvore Git limpa:
