@@ -1,0 +1,25 @@
+Ambiente encerrado; banco e anexos preservados.
+API: http://localhost:38771
+Front: http://localhost:33987
+Banco: balcao-b719c51c742ad1dd/balcao (localhost:39921)
+Anexos: /mnt/f/MBA/domando um legado para agentes/validacao-b/.balcao/uploads
+Worker: balcao-b719c51c742ad1dd-worker-1
+Estado: /mnt/f/MBA/domando um legado para agentes/validacao-b/.balcao/state.json
+ Container balcao-b719c51c742ad1dd-web-1  Stopping
+ Container balcao-b719c51c742ad1dd-worker-1  Stopping
+ Container balcao-b719c51c742ad1dd-api-1  Stopping
+ Container balcao-b719c51c742ad1dd-web-1  Stopped
+ Container balcao-b719c51c742ad1dd-web-1  Removing
+ Container balcao-b719c51c742ad1dd-web-1  Removed
+ Container balcao-b719c51c742ad1dd-api-1  Stopped
+ Container balcao-b719c51c742ad1dd-api-1  Removing
+ Container balcao-b719c51c742ad1dd-api-1  Removed
+ Container balcao-b719c51c742ad1dd-worker-1  Stopped
+ Container balcao-b719c51c742ad1dd-worker-1  Removing
+ Container balcao-b719c51c742ad1dd-worker-1  Removed
+ Container balcao-b719c51c742ad1dd-db-1  Stopping
+ Container balcao-b719c51c742ad1dd-db-1  Stopped
+ Container balcao-b719c51c742ad1dd-db-1  Removing
+ Container balcao-b719c51c742ad1dd-db-1  Removed
+ Network balcao-b719c51c742ad1dd_default  Removing
+ Network balcao-b719c51c742ad1dd_default  Removed

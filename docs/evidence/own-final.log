@@ -1,0 +1,6 @@
+
+> balcao-harness@1.0.0 gates:own
+> node scripts/gates-mutations.mjs own
+
+PASS G11 web/src/mutacao-endereco.ts
+PASS G12 api/src/domain/mutacao-infraestrutura.ts

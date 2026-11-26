@@ -1,0 +1,225 @@
+
+> balcao-harness@1.0.0 up
+> node scripts/environment.mjs up
+
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.19.3) to ./node_modules/@prisma/client in 334ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.66kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 622B done
+#2 DONE 0.0s
+
+#3 [worker internal] load metadata for docker.io/library/node:24-bookworm-slim
+#3 DONE 0.5s
+
+#4 [api internal] load .dockerignore
+#4 transferring context: 101B done
+#4 DONE 0.0s
+
+#5 [worker base 1/2] FROM docker.io/library/node:24-bookworm-slim@sha256:873f586f3794f52281bd039bf02c048a0be08fde619338f9941bad1eb6b34530
+#5 resolve docker.io/library/node:24-bookworm-slim@sha256:873f586f3794f52281bd039bf02c048a0be08fde619338f9941bad1eb6b34530 0.0s done
+#5 DONE 0.0s
+
+#6 [api internal] load build context
+#6 transferring context: 169.56kB 0.1s done
+#6 DONE 0.1s
+
+#7 [web internal] load build context
+#7 transferring context: 56.51kB 0.1s done
+#7 DONE 0.1s
+
+#8 [web web 1/4] WORKDIR /app/web
+#8 CACHED
+
+#9 [web web 2/4] COPY web/package.json web/package-lock.json ./
+#9 DONE 0.0s
+
+#10 [api base 2/2] RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [worker api 1/5] WORKDIR /app/api
+#11 CACHED
+
+#12 [worker api 2/5] COPY api/package.json api/package-lock.json ./
+#12 DONE 0.0s
+
+#13 [api api 3/5] COPY api/prisma ./prisma
+#13 DONE 0.0s
+
+#14 [worker api 4/5] RUN npm ci && npx prisma generate
+#14 ...
+
+#15 [web web 3/4] RUN npm ci
+#15 1.958 
+#15 1.958 added 29 packages, and audited 30 packages in -2m
+#15 1.958 
+#15 1.958 10 packages are looking for funding
+#15 1.958   run `npm fund` for details
+#15 1.965 
+#15 1.965 1 high severity vulnerability
+#15 1.965 
+#15 1.965 To address all issues, run:
+#15 1.965   npm audit fix
+#15 1.965 
+#15 1.965 Run `npm audit` for details.
+#15 1.966 npm notice
+#15 1.966 npm notice New major version of npm available! 11.19.1 -> 12.2.3
+#15 1.966 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+#15 1.966 npm notice To update run: npm install -g npm@12.2.3
+#15 1.966 npm notice
+#15 DONE 2.3s
+
+#16 [web web 4/4] COPY web/ ./
+#16 DONE 0.1s
+
+#17 [web] exporting to image
+#17 exporting layers
+#17 exporting layers 3.3s done
+#17 exporting manifest sha256:8eba5dc62aeac9570e7042632c5aba2baf9de7cd02acffececc8d14d4d29a07c 0.0s done
+#17 exporting config sha256:afbc9de8b030592aaa53c6b630f68a07e7c4cab632796427bfd1d2adc0b2c8d6 done
+#17 exporting attestation manifest sha256:c9ab681bf47c70ca0914172aa162b8b42fb6b91ae9123c975d432b203ed36646 0.0s done
+#17 exporting manifest list sha256:914dd553d2e7271a2140a560bebb5e3f50bf128992f19a351765c554ed317fd7 0.0s done
+#17 naming to docker.io/library/balcao-da95d8110e60eee3-web:latest done
+#17 unpacking to docker.io/library/balcao-da95d8110e60eee3-web:latest
+#17 unpacking to docker.io/library/balcao-da95d8110e60eee3-web:latest 0.5s done
+#17 DONE 3.9s
+
+#18 [web] resolving provenance for metadata file
+#18 DONE 0.0s
+
+#14 [worker api 4/5] RUN npm ci && npx prisma generate
+#14 9.256 
+#14 9.256 added 184 packages, and audited 185 packages in -1m
+#14 9.256 
+#14 9.256 37 packages are looking for funding
+#14 9.256   run `npm fund` for details
+#14 9.311 
+#14 9.311 9 vulnerabilities (1 moderate, 8 high)
+#14 9.311 
+#14 9.311 To address issues that do not require attention, run:
+#14 9.311   npm audit fix
+#14 9.311 
+#14 9.311 To address all issues (including breaking changes), run:
+#14 9.311   npm audit fix --force
+#14 9.311 
+#14 9.311 Run `npm audit` for details.
+#14 9.312 npm warn install-scripts 4 packages have install scripts not yet covered by allowScripts:
+#14 9.312 npm warn install-scripts   @prisma/client@6.19.3 (postinstall: node scripts/postinstall.js)
+#14 9.312 npm warn install-scripts   @prisma/engines@6.19.3 (postinstall: node scripts/postinstall.js)
+#14 9.312 npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+#14 9.312 npm warn install-scripts   prisma@6.19.3 (preinstall: node scripts/preinstall-entry.js)
+#14 9.312 npm warn install-scripts
+#14 9.312 npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+#14 9.314 npm notice
+#14 9.314 npm notice New major version of npm available! 11.19.1 -> 12.2.3
+#14 9.314 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+#14 9.314 npm notice To update run: npm install -g npm@12.2.3
+#14 9.314 npm notice
+#14 9.946 Prisma schema loaded from prisma/schema.prisma
+#14 10.04 
+#14 10.04 ✔ Generated Prisma Client (v6.19.3) to ./node_modules/@prisma/client in 37ms
+#14 10.04 
+#14 10.04 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+#14 10.04 
+#14 10.04 Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+#14 10.04 
+#14 DONE 10.9s
+
+#19 [api api 5/5] COPY api/src ./src
+#19 DONE 0.1s
+
+#20 [worker] exporting to image
+#20 exporting layers
+#20 ...
+
+#21 [api] exporting to image
+#21 exporting layers 11.8s done
+#21 exporting manifest sha256:58ed1ef00bd3d21119a85edf13fe60224e8c397c1154ecbdba848fc496d0aa42 0.0s done
+#21 exporting config sha256:4c57cd591a86e6261f58181a3da9a7c6b89b44f3ecaccc5d8a20d14bd9ac88bc 0.0s done
+#21 exporting attestation manifest sha256:0ac787ca188ff29f481da8ef906519a47870db3740d1c834376ba5c4a9f305c6
+#21 ...
+
+#20 [worker] exporting to image
+#20 exporting layers 11.8s done
+#20 exporting manifest sha256:831ec191ae85d5ea471b97bba83d04253ae84541500e49f90fb6b26c0e1fb28e 0.0s done
+#20 exporting config sha256:0032fc0c83d379f79ea4badf1384af3cd022d1730e56e50459eb033d1b85f9c0 0.0s done
+#20 exporting attestation manifest sha256:5841d0c4b3d2fc279e5a5d3ab6826d40fa9eb837b4905a0f23c29c5848acbe40 0.0s done
+#20 exporting manifest list sha256:834d68748eb8921d273ba9beb5b5f45dedb2e07e856f76a622d5ae6743b26f51
+#20 exporting manifest list sha256:834d68748eb8921d273ba9beb5b5f45dedb2e07e856f76a622d5ae6743b26f51 0.0s done
+#20 naming to docker.io/library/balcao-da95d8110e60eee3-worker:latest done
+#20 unpacking to docker.io/library/balcao-da95d8110e60eee3-worker:latest
+#20 ...
+
+#21 [api] exporting to image
+#21 exporting attestation manifest sha256:0ac787ca188ff29f481da8ef906519a47870db3740d1c834376ba5c4a9f305c6 0.0s done
+#21 exporting manifest list sha256:da14e00dab0ee9c6140bde9a9672fcda50835c239b3b014a5870c47b8b976e3e 0.0s done
+#21 naming to docker.io/library/balcao-da95d8110e60eee3-api:latest done
+#21 unpacking to docker.io/library/balcao-da95d8110e60eee3-api:latest 4.0s done
+#21 DONE 16.2s
+
+#20 [worker] exporting to image
+#20 unpacking to docker.io/library/balcao-da95d8110e60eee3-worker:latest 4.4s done
+#20 DONE 16.6s
+
+#22 [api] resolving provenance for metadata file
+#22 DONE 0.1s
+
+#23 [worker] resolving provenance for metadata file
+#23 DONE 0.0s
+ balcao-da95d8110e60eee3-api  Built
+ balcao-da95d8110e60eee3-web  Built
+ balcao-da95d8110e60eee3-worker  Built
+ Container balcao-da95d8110e60eee3-db-1  Recreate
+ Container balcao-da95d8110e60eee3-db-1  Recreated
+ Container balcao-da95d8110e60eee3-db-1  Starting
+ Container balcao-da95d8110e60eee3-db-1  Started
+ Container balcao-da95d8110e60eee3-db-1  Waiting
+ Container balcao-da95d8110e60eee3-db-1  Healthy
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "balcao", schema "public" at "db:5432"
+
+4 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+seed ok: admin@balcao.dev, agente@balcao.dev, cliente@balcao.dev
+ Container balcao-da95d8110e60eee3-db-1  Running
+ Container balcao-da95d8110e60eee3-web-1  Recreate
+ Container balcao-da95d8110e60eee3-worker-1  Recreate
+ Container balcao-da95d8110e60eee3-api-1  Recreate
+ Container balcao-da95d8110e60eee3-web-1  Recreated
+ Container balcao-da95d8110e60eee3-worker-1  Recreated
+ Container balcao-da95d8110e60eee3-api-1  Recreated
+ Container balcao-da95d8110e60eee3-web-1  Starting
+ Container balcao-da95d8110e60eee3-db-1  Waiting
+ Container balcao-da95d8110e60eee3-db-1  Waiting
+ Container balcao-da95d8110e60eee3-web-1  Started
+ Container balcao-da95d8110e60eee3-db-1  Healthy
+ Container balcao-da95d8110e60eee3-db-1  Healthy
+ Container balcao-da95d8110e60eee3-api-1  Starting
+ Container balcao-da95d8110e60eee3-worker-1  Starting
+ Container balcao-da95d8110e60eee3-worker-1  Started
+ Container balcao-da95d8110e60eee3-api-1  Started
+ Container balcao-da95d8110e60eee3-worker-1  Waiting
+ Container balcao-da95d8110e60eee3-web-1  Waiting
+ Container balcao-da95d8110e60eee3-db-1  Waiting
+ Container balcao-da95d8110e60eee3-api-1  Waiting
+ Container balcao-da95d8110e60eee3-worker-1  Healthy
+ Container balcao-da95d8110e60eee3-db-1  Healthy
+ Container balcao-da95d8110e60eee3-web-1  Healthy
+ Container balcao-da95d8110e60eee3-api-1  Healthy
+API: http://localhost:37557
+Front: http://localhost:40537
+Banco: balcao-da95d8110e60eee3/balcao (localhost:36505)
+Anexos: /mnt/f/MBA/domando um legado para agentes/validacao-a/.balcao/uploads
+Worker: balcao-da95d8110e60eee3-worker-1
+Estado: /mnt/f/MBA/domando um legado para agentes/validacao-a/.balcao/state.json

@@ -1,0 +1,136 @@
+{
+  "commit": "e1d5c9f",
+  "branch": "main",
+  "repositorio": "https://github.com/trvalle/mba-ia-desafio-harness-legado",
+  "data": "2026-11-26",
+  "veredito": "EM VALIDAÇÃO — publicação final pendente",
+  "unit": {
+    "passed": 33,
+    "total": 33
+  },
+  "blackbox": {
+    "a": {
+      "passed": 51,
+      "total": 51
+    },
+    "b": {
+      "passed": 51,
+      "total": 51
+    }
+  },
+  "browser": {
+    "status": "PASS",
+    "results": [
+      {
+        "copy": "A",
+        "title": "Fatura em dobro, urgente",
+        "id": "5a3c14f4-e2c9-4a01-aeac-e8d63cdc002d",
+        "triageMs": 3373,
+        "front": "http://localhost:40537/tickets/5a3c14f4-e2c9-4a01-aeac-e8d63cdc002d"
+      },
+      {
+        "copy": "B",
+        "title": "Fatura da segunda cópia, urgente",
+        "id": "b584dc74-ede7-45a2-a6b6-f43161bf1602",
+        "triageMs": 3376,
+        "front": "http://localhost:33987/tickets/b584dc74-ede7-45a2-a6b6-f43161bf1602"
+      }
+    ],
+    "uploadIsolated": true,
+    "downloadMatches": true,
+    "absentFromOtherCopy": true,
+    "pageErrors": []
+  },
+  "isolation": {
+    "status": "PASS",
+    "distinctResources": true,
+    "aHealthyAfterBDown": {
+      "status": "ok",
+      "db": "ok"
+    },
+    "bStopped": true,
+    "bRestartHealthy": {
+      "status": "ok",
+      "db": "ok"
+    },
+    "bStatePreserved": true
+  },
+  "hook": {
+    "head": "e1d5c9f03e70623805401298e1520f4a26a83a1b",
+    "results": [
+      {
+        "rule": "G1",
+        "status": "PASS",
+        "commitBlocked": true,
+        "exitCode": 1
+      },
+      {
+        "rule": "G2",
+        "status": "PASS",
+        "commitBlocked": true,
+        "exitCode": 1
+      }
+    ],
+    "clean": true
+  },
+  "auditoria": {
+    "status": "Achados técnicos corrigidos e reavaliados por agente independente",
+    "achadosIniciais": 3,
+    "achadosCorrigidos": 3,
+    "achadosTecnicosPendentes": 0,
+    "fonte": "docs/auditoria.md"
+  },
+  "logs": [
+    "evidence/blackbox-a.log",
+    "evidence/blackbox-b.log",
+    "evidence/clean-up.log",
+    "evidence/clean-repeat.log",
+    "evidence/browser.json",
+    "evidence/isolation.json",
+    "evidence/hook/hook.json",
+    "evidence/gates-final.log",
+    "evidence/kit-final.log",
+    "evidence/own-final.log",
+    "evidence/adversarial-final.log",
+    "evidence/report-validation.json"
+  ],
+  "limitacoes": [
+    "NTP Ubuntu/Hyper-V conflitavam com offset96,5s. systemd-timesyncd foi suspenso temporariamente; configuração de inicialização intacta, serviço voltou ativo ao encerrar a distro. Blackbox51/51 nas duas cópias após estabilização, sem alterar os testes. Os logs do kit preservam durações afetadas pelo relógio; os resultados/exit codes não foram alterados.",
+    "npm audit: API8 high/1 moderate; web1 high; zero critical. Atualizações forçadas não aplicadas ao legado.",
+    "Cobertura de linhas não coletada. Integração herdada fora dos critérios acadêmicos; não executada.",
+    "Compatibilidade Linux/WSL exercitada; macOS não executado."
+  ],
+  "kit": {
+    "passed": 19,
+    "total": 19,
+    "exitCode": 0
+  },
+  "own": {
+    "passed": 2,
+    "total": 2,
+    "exitCode": 0
+  },
+  "adversarial": {
+    "passed": 17,
+    "total": 17,
+    "exitCode": 0
+  },
+  "html": {
+    "status": "PASS",
+    "file": "docs/relatorio-final.html",
+    "requirements": 56,
+    "academic": 39,
+    "pageErrors": [],
+    "desktop": "1440x1000",
+    "mobile": "390x844",
+    "offline": true,
+    "filters": true,
+    "theme": true,
+    "modes": true,
+    "copy": true,
+    "gallery": true,
+    "links": true,
+    "images": true,
+    "printCss": true
+  }
+}

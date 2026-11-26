@@ -38,6 +38,7 @@ Sem features novas, CI ou deploy. IA fake é o padrão e não precisa de chave.
 - Não presuma que npm gerou Prisma: a subida executa generate explicitamente.
 - Não lance API/worker em sessões descartáveis; use o ambiente supervisionado.
 - Depois de mudar gates, repita o kit; comprove regra com violação real.
+- Salve evidências no repositório antes de encerrar sessões; /tmp é descartável.
 - Registre erros reais e prevenção em [incidentes](docs/incidentes.md).
 - Estado e pendências: [estado](docs/estado.md); [matriz](docs/requisitos.json).
 - Ao trocar estas instruções, inicie uma sessão nova antes de confiar nelas.

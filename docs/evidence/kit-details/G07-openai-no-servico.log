@@ -1,0 +1,9 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G7 api/src/services/cliente-ia.ts — Import de SDK fora de integrations: openai
+G10 api/src/services/cliente-ia.ts — files: api/src/services/cliente-ia.ts

@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "copy": "A",
+      "title": "Fatura em dobro, urgente",
+      "id": "5a3c14f4-e2c9-4a01-aeac-e8d63cdc002d",
+      "triageMs": 3373,
+      "front": "http://localhost:40537/tickets/5a3c14f4-e2c9-4a01-aeac-e8d63cdc002d"
+    },
+    {
+      "copy": "B",
+      "title": "Fatura da segunda cópia, urgente",
+      "id": "b584dc74-ede7-45a2-a6b6-f43161bf1602",
+      "triageMs": 3376,
+      "front": "http://localhost:33987/tickets/b584dc74-ede7-45a2-a6b6-f43161bf1602"
+    }
+  ],
+  "uploadIsolated": true,
+  "downloadMatches": true,
+  "absentFromOtherCopy": true,
+  "pageErrors": []
+}

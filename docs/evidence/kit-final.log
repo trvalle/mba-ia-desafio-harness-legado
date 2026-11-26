@@ -1,0 +1,31 @@
+Repositorio: /root/.cache/balcao-validation/gates-e1d5c9f
+Comando de gates: npm run gates
+Violacoes: 19
+
+Linha de base: rodando os gates sem violacao...
+Linha de base: gates passaram (3s).
+
+[1/19] G01-a-retorno-texto ... barrada (3s, codigo 1)
+[2/19] G01-b-rotulo-texto-no-front ... barrada (99s, codigo 1)
+[3/19] G02-a-variavel-sem-uso ... barrada (-93s, codigo 1)
+[4/19] G02-b-parametro-any ... barrada (3s, codigo 1)
+[5/19] G02-c-import-sem-uso ... barrada (2s, codigo 1)
+[6/19] G03-teste-falhando ... barrada (3s, codigo 1)
+[7/19] G04-a-prisma-na-rota ... barrada (3s, codigo 1)
+[8/19] G04-b-rota-importa-repositorio ... barrada (3s, codigo 1)
+[9/19] G05-a-env-na-api ... barrada (3s, codigo 1)
+[10/19] G05-b-env-no-front ... barrada (3s, codigo 1)
+[11/19] G06-a-servico-com-tipo-express ... barrada (3s, codigo 1)
+[12/19] G06-b-servico-importa-http ... barrada (3s, codigo 1)
+[13/19] G07-openai-no-servico ... barrada (3s, codigo 1)
+[14/19] G08-front-importa-api ... barrada (3s, codigo 1)
+[15/19] G09-a-ciclo-na-api ... barrada (3s, codigo 1)
+[16/19] G09-b-ciclo-no-front ... barrada (3s, codigo 1)
+[17/19] G10-a-arquivo-sem-uso ... barrada (3s, codigo 1)
+[18/19] G10-b-dependencia-sem-uso ... barrada (3s, codigo 1)
+[19/19] G10-c-export-sem-uso ... barrada (99s, codigo 1)
+
+Resumo:
+  barrada: 19
+Logs: /tmp/kit-gates.rxDdT7
+Resultado: todas as violacoes foram barradas.

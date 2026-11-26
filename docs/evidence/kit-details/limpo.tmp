@@ -1,0 +1,8 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 34/34 testes aprovados
+
+Resumo dos gates (G1–G12):
+G10 api/src/services/arredonda.ts — exports: truncar

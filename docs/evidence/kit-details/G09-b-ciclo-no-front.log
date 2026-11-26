@@ -1,0 +1,11 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G9 web/src/ciclo-x.ts — Ciclo: web/src/ciclo-x.ts <-> web/src/ciclo-y.ts
+G9 web/src/ciclo-y.ts — Ciclo: web/src/ciclo-x.ts <-> web/src/ciclo-y.ts
+G10 web/src/ciclo-x.ts — files: web/src/ciclo-x.ts
+G10 web/src/ciclo-y.ts — files: web/src/ciclo-y.ts

@@ -1,0 +1,10 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G6 api/src/services/falha-especial.ts — Import proibido: ../http/erro-especial
+G10 api/src/http/erro-especial.ts — files: api/src/http/erro-especial.ts
+G10 api/src/services/falha-especial.ts — files: api/src/services/falha-especial.ts

@@ -1,0 +1,9 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G4 api/src/http/contagem-chamados.ts — Import proibido: @prisma/client
+G10 api/src/http/contagem-chamados.ts — files: api/src/http/contagem-chamados.ts

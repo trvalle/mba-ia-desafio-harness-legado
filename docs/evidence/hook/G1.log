@@ -1,0 +1,5 @@
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G1 api/src/services/teste-hook.ts — TS2322 Type 'string' is not assignable to type 'number'.
+G10 api/src/services/teste-hook.ts — files: api/src/services/teste-hook.ts

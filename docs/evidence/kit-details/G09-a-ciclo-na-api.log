@@ -1,0 +1,11 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G9 api/src/services/ciclo-a.ts — Ciclo: api/src/services/ciclo-a.ts <-> api/src/services/ciclo-b.ts
+G9 api/src/services/ciclo-b.ts — Ciclo: api/src/services/ciclo-a.ts <-> api/src/services/ciclo-b.ts
+G10 api/src/services/ciclo-a.ts — files: api/src/services/ciclo-a.ts
+G10 api/src/services/ciclo-b.ts — files: api/src/services/ciclo-b.ts

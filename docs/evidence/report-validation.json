@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "file": "docs/relatorio-final.html",
+  "requirements": 56,
+  "academic": 39,
+  "pageErrors": [],
+  "desktop": "1440x1000",
+  "mobile": "390x844",
+  "offline": true,
+  "filters": true,
+  "theme": true,
+  "modes": true,
+  "copy": true,
+  "gallery": true,
+  "links": true,
+  "images": true,
+  "printCss": true
+}

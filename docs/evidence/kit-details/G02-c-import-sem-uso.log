@@ -1,0 +1,9 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G2 web/src/titulo-pagina.ts — 1:10 @typescript-eslint/no-unused-vars 'useState' is defined but never used.
+G10 web/src/titulo-pagina.ts — files: web/src/titulo-pagina.ts

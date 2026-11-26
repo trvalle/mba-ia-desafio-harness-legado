@@ -1,0 +1,9 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G6 api/src/services/usuario-da-requisicao.ts — Import proibido: express
+G10 api/src/services/usuario-da-requisicao.ts — files: api/src/services/usuario-da-requisicao.ts

@@ -1,0 +1,9 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G2 api/src/services/soma-prazos.ts — 2:9 @typescript-eslint/no-unused-vars 'quantidade' is assigned a value but never used.
+G10 api/src/services/soma-prazos.ts — files: api/src/services/soma-prazos.ts

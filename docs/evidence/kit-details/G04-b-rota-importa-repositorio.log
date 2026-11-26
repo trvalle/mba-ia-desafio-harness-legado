@@ -1,0 +1,10 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G4 api/src/http/busca-rapida-rota.ts — Import proibido: ../repositories/busca-rapida
+G10 api/src/http/busca-rapida-rota.ts — files: api/src/http/busca-rapida-rota.ts
+G10 api/src/repositories/busca-rapida.ts — files: api/src/repositories/busca-rapida.ts

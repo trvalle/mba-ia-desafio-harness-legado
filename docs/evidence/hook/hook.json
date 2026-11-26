@@ -1,0 +1,18 @@
+{
+  "head": "e1d5c9f03e70623805401298e1520f4a26a83a1b",
+  "results": [
+    {
+      "rule": "G1",
+      "status": "PASS",
+      "commitBlocked": true,
+      "exitCode": 1
+    },
+    {
+      "rule": "G2",
+      "status": "PASS",
+      "commitBlocked": true,
+      "exitCode": 1
+    }
+  ],
+  "clean": true
+}

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "distinctResources": true,
+  "aHealthyAfterBDown": {
+    "status": "ok",
+    "db": "ok"
+  },
+  "bStopped": true,
+  "bRestartHealthy": {
+    "status": "ok",
+    "db": "ok"
+  },
+  "bStatePreserved": true
+}

@@ -1,0 +1,9 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G2 api/src/services/normaliza-texto.ts — 1:40 @typescript-eslint/no-explicit-any Unexpected any. Specify a different type.
+G10 api/src/services/normaliza-texto.ts — files: api/src/services/normaliza-texto.ts

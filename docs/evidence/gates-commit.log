@@ -1,0 +1,6 @@
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+PASS — nenhuma violação encontrada
+[main e1d5c9f] fix: fecha lacunas de gates e corrige bind no Docker Desktop
+ 5 files changed, 51 insertions(+), 13 deletions(-)

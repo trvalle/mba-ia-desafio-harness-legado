@@ -127,3 +127,7 @@ O fluxo completo do professor está em [ENUNCIADO.md](ENUNCIADO.md). Resultados,
 - Entrega acadêmica: este fork público, branch **main**, com o histórico e os arquivos do harness.
 
 O relatório complementar não substitui o repositório nem representa nota oficial do professor.
+
+### Relógio no WSL
+
+Se testes de 15 segundos falharem em apenas 1–3 segundos, compare o relógio do Windows com `timedatectl timesync-status` no WSL. No ambiente desta entrega havia conflito NTP/Hyper-V com 96,5 segundos de diferença; a [orientação oficial do Ubuntu](https://ubuntu.com/wsl/docs/stable/explanation/time-sync/) explica o caso. O harness não altera relógios nem serviços do host. A validação foi feita após estabilização temporária, e o serviço voltou ao estado ativo no encerramento da distro.

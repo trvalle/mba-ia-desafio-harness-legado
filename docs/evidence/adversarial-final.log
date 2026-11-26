@@ -1,0 +1,21 @@
+
+> balcao-harness@1.0.0 gates:adversarial
+> node scripts/gates-mutations.mjs adversarial
+
+PASS G1 api/src/domain/mutacao-declaracao.d.ts
+PASS G1 web/src/mutacao-declaracao.d.ts
+PASS G1 web/mutacao-config.ts
+PASS G4 api/src/http/routes/mutacao-reexport.ts
+PASS G5 api/src/services/mutacao-env-computado.ts
+PASS G5 web/src/mutacao-env-computado.ts
+PASS G5 api/src/services/mutacao-env-chave-constante.ts
+PASS G5 web/src/mutacao-env-chave-constante.ts
+PASS G5 api/src/services/mutacao-env-desestruturado.ts
+PASS G5 api/src/services/mutacao-env-chave-desestruturada.ts
+PASS G6 api/src/services/mutacao-tipo-importado.ts
+PASS G7 api/src/services/mutacao-import-dinamico.ts
+PASS G8 web/src/mutacao-tipo-backend.ts
+PASS G9 api/src/domain/mutacao-tipo-a.ts, api/src/domain/mutacao-tipo-b.ts
+PASS G10 api/src/services/mutacao-export-tipo.ts, api/src/services/mutacao-export-tipo.test.ts
+PASS G10 api/scripts/mutacao-arquivo-sem-uso.ts
+PASS G10 web/scripts/mutacao-arquivo-sem-uso.ts

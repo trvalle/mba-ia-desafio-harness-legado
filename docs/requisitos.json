@@ -6,7 +6,7 @@
     "enunciado": "Anexo 617f5a12-8949-48b8-91b2-d661d905c2c2/Texto colado.txt",
     "complementar": "Anexo 0db60046-0e0b-4f8d-9e24-18102f727646/Texto colado.txt"
   },
-  "politicaStatus": "PENDENTE não significa falha. Nenhum requisito foi aprovado nesta matriz inicial. Fatos do baseline são registrados separadamente e não comprovam a versão em implementação.",
+  "politicaStatus": "39 acadêmicos e17 complementares, aprovados somente com provas. E1 e X06 aguardam publicação final. GA1–GA3 são IDs internos; regras próprias G11/G12 correspondem a P1/P2.",
   "estadosPermitidos": [
     "PENDENTE",
     "APROVADO",
@@ -67,11 +67,11 @@
       "descricao": "Subir todo o Balcão com um único comando em clone limpo.",
       "origem": "Enunciado §1; aceite Ambiente; fluxo 1",
       "criterio": "Instala dependências, migra banco, carrega seed e inicia API, front e worker sem passos extras.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/environment.mjs; scripts/Dockerfile",
       "teste": "Executar o comando documentado em clone independente usando somente pré-requisitos permitidos.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/clean-up.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A02",
@@ -81,11 +81,11 @@
       "descricao": "Informar os endereços e recursos exclusivos da cópia.",
       "origem": "Enunciado §1; fluxo 1–2",
       "criterio": "Saída contém URL da API, URL do front, banco e pasta de anexos.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/environment.mjs show()",
       "teste": "Capturar e comparar as saídas de subida das duas cópias.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/clean-up.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A03",
@@ -95,11 +95,11 @@
       "descricao": "Repetir a subida sem derrubar é seguro e não duplica seed.",
       "origem": "Enunciado §1; fluxo 1",
       "criterio": "Segunda execução termina sem erro e preserva usuários, chamados e respostas sem duplicação.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "api/prisma/seed.ts upserts de usuários/chamados; update vazio",
       "teste": "Executar subida duas vezes; comparar contagens e autenticar as três contas.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/clean-repeat.log; contagem 3 usuários, 3 chamados e 3 respostas após repetição",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A04",
@@ -109,11 +109,11 @@
       "descricao": "Duas worktrees funcionam simultaneamente com portas e bancos separados.",
       "origem": "Enunciado §1; fluxo 2",
       "criterio": "Portas e bancos diferentes; ambas permanecem disponíveis.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Projeto Compose e 3 portas por caminho real da cópia",
       "teste": "Criar segunda worktree pelo fluxo oficial, subir e inspecionar recursos das duas.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/isolation.json",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A05",
@@ -123,11 +123,11 @@
       "descricao": "Cada cópia possui sua pasta de anexos e seu worker separado.",
       "origem": "Enunciado §1; restrições; fluxo 2–3",
       "criterio": "Worker é processo separado da API; cada cópia processa seu banco e armazena seus arquivos.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Worker separado e bind de anexos por cópia",
       "teste": "Inventariar processos/containers; criar chamados e anexos em ambas.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/browser.json; docs/evidence/isolation.json",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A06",
@@ -137,11 +137,11 @@
       "descricao": "Cada front conversa com a API da própria cópia.",
       "origem": "Enunciado §1; fluxo 2–3",
       "criterio": "Login funciona nas duas interfaces; uploads e downloads usam a API correta.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "api/src/config/env.ts WEB_ORIGIN; web/src/config/env.ts API_URL",
       "teste": "Realizar jornadas reais no navegador nas duas URLs.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/browser.json",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A07",
@@ -151,11 +151,11 @@
       "descricao": "Triagem pelo front ocorre em até 15 segundos no exemplo oficial.",
       "origem": "Enunciado fluxo 3",
       "criterio": "Título Fatura em dobro, urgente e descrição Paguei duas vezes a mesma fatura. mudam de Em triagem para Financeiro / prioridade Urgente.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Worker fake e polling original da interface preservados",
       "teste": "Medir jornada no navegador e registrar estado final e duração.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/browser.json: A 3373 ms; B 3376 ms",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A08",
@@ -165,11 +165,11 @@
       "descricao": "Chamados e anexos ficam isolados entre as cópias.",
       "origem": "Enunciado fluxo 3",
       "criterio": "Chamado de A não aparece em B; .txt de A está apenas na pasta de A; B também faz triagem própria.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Volume Postgres e pasta de anexos exclusivos",
       "teste": "Criar chamado e anexar .txt no front de A; consultar B e ambas as pastas; repetir criação em B.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/browser.json; docs/evidence/anexo-a.png; docs/evidence/isolamento-b.png",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A09",
@@ -179,11 +179,11 @@
       "descricao": "Encerrar somente recursos iniciados pela própria cópia.",
       "origem": "Enunciado §1; fluxo 9",
       "criterio": "Down de B encerra API, worker, front e recursos iniciados por B sem afetar A.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Compose down com projeto da própria cópia",
       "teste": "Encerrar B, verificar health de A e inventariar recursos remanescentes.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/isolation.json; docs/evidence/b-down.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A10",
@@ -193,11 +193,11 @@
       "descricao": "Reiniciar uma cópia após seu encerramento funciona.",
       "origem": "Enunciado fluxo 9",
       "criterio": "B sobe novamente sem erro; ambas podem ser encerradas ao final.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Compose up reaplica migrations/seed sem apagar volume",
       "teste": "Executar down B, up B, down B e down A.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/isolation.json; docs/evidence/b-up.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "A11",
@@ -207,11 +207,11 @@
       "descricao": "Blackbox oficial passa contra as duas cópias.",
       "origem": "Enunciado aceite Ambiente; fluxo 4",
       "criterio": "Cópia da suíte do repositório base passa em A e B sem chave de IA.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Contrato oficial do upstream e515681, sem modificações",
       "teste": "Clonar upstream separadamente; npm ci em blackbox; executar com API_URL de cada cópia.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/blackbox-a.log; docs/evidence/blackbox-b.log: 51/51 em cada",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G1",
@@ -221,11 +221,11 @@
       "descricao": "Zero erro de tipo em api/ e web/.",
       "origem": "Enunciado G1; fluxo 5",
       "criterio": "Baseline passa e violações novas em ambas as árvores produzem G1 e arquivo.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Executar gate e mutações de tipo na API e web.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G2",
@@ -235,11 +235,11 @@
       "descricao": "Lint sem erro nem warning na API e web, incluindo variável/import sem uso e any explícito.",
       "origem": "Enunciado G2; fluxo 5",
       "criterio": "Cada categoria é detectada com G2 e arquivo; warnings tornam o resultado reprovado.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Executar lint e mutações independentes nas duas árvores.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G3",
@@ -249,11 +249,11 @@
       "descricao": "Todos os testes api/src/**/*.test.ts executam e passam sem banco.",
       "origem": "Enunciado G3; descrição do projeto",
       "criterio": "Descoberta inclui novos testes no padrão fixo; falha de teste aparece com G3 e arquivo.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Executar suíte unitária e plantar teste novo com asserção falhando.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G4",
@@ -263,11 +263,11 @@
       "descricao": "HTTP não importa @prisma/client nem módulos de repositories.",
       "origem": "Enunciado G4; fluxo 5",
       "criterio": "Imports proibidos em qualquer arquivo api/src/http/ são identificados.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Plantar imports de Prisma e repositories com nomes e caminhos variados.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G5",
@@ -277,11 +277,11 @@
       "descricao": "Acesso às variáveis de ambiente é centralizado em config.",
       "origem": "Enunciado G5; fluxo 5",
       "criterio": "process.env só em api/src/config/; import.meta.env só em web/src/config/.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Plantar acessos nas duas árvores, incluindo formas sintáticas equivalentes.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G6",
@@ -291,11 +291,11 @@
       "descricao": "Services não importa express, multer nem módulos HTTP, inclusive somente tipos.",
       "origem": "Enunciado G6; fluxo 5",
       "criterio": "Todos os arquivos em api/src/services/, inclusive testes, seguem a regra.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Plantar imports normais e import type para cada origem proibida.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G7",
@@ -305,11 +305,11 @@
       "descricao": "openai só é importado em api/src/integrations/.",
       "origem": "Enunciado G7; fluxo 5",
       "criterio": "Import fora de integrations é identificado com G7 e arquivo.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Plantar import em módulo fora da pasta permitida.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G8",
@@ -319,11 +319,11 @@
       "descricao": "Nada em web/ importa arquivos de api/, inclusive somente tipos.",
       "origem": "Enunciado G8; fluxo 5",
       "criterio": "Import normal e de tipo cruzando os projetos é detectado.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Plantar casos com caminhos equivalentes e import type.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G9",
@@ -333,11 +333,11 @@
       "descricao": "Nenhum import circular em api/src/ ou web/src/.",
       "origem": "Enunciado G9; fluxo 5",
       "criterio": "Ciclos novos são detectados nas duas árvores.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Plantar ciclos independentes na API e web; verificar G9 e arquivo.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "G10",
@@ -347,53 +347,53 @@
       "descricao": "Nenhum arquivo, export, export de tipo ou dependência declarada sem uso na API e web.",
       "origem": "Enunciado G10; fluxo 5",
       "criterio": "Cada categoria é detectada; dependência traz também seu nome na lista final.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "scripts/gates.mjs, eslint.config.mjs e knip.json; código passa sem exclusões/supressões",
       "teste": "Plantar separadamente arquivo, export, tipo e dependência sem uso em cada projeto.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/gates-final.log; docs/evidence/kit-final.log; docs/evidence/kit-details; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
-      "id": "G11",
+      "id": "GA1",
       "escopo": "ACADEMICO",
       "classificacao": "OBRIGATORIO",
       "categoria": "Gates",
       "descricao": "Comando único executa todos os gates e agrega todas as violações.",
       "origem": "Enunciado §2; fluxo 5",
       "criterio": "Não para na primeira falha; termina com uma linha por violação contendo ID e arquivo; exit code não zero se houver falha.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Orquestrador agrega falhas de todas as ferramentas; AST resolve imports e acesso ao ambiente; arquivos próprios cobertos",
       "teste": "Plantar violações simultâneas de regras diferentes e conferir lista final.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/kit-details/G01-a-retorno-texto.log mostra G1 e G10; kit19/19 e adversarial17/17; auditoria independente",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
-      "id": "G12",
+      "id": "GA2",
       "escopo": "ACADEMICO",
       "classificacao": "OBRIGATORIO",
       "categoria": "Gates",
       "descricao": "Gates passam na main sem supressões ou exclusões artificiais.",
       "origem": "Enunciado §2; aceite Gates; fluxo 8",
       "criterio": "Nenhuma ocorrência de eslint-disable, @ts-ignore, @ts-expect-error ou @ts-nocheck em src; nenhum arquivo excluído fora das exceções da própria regra.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Orquestrador agrega falhas de todas as ferramentas; AST resolve imports e acesso ao ambiente; arquivos próprios cobertos",
       "teste": "Executar busca oficial e revisar configuração de cada ferramenta.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/kit-details/G01-a-retorno-texto.log mostra G1 e G10; kit19/19 e adversarial17/17; auditoria independente",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
-      "id": "G13",
+      "id": "GA3",
       "escopo": "ACADEMICO",
       "classificacao": "OBRIGATORIO",
       "categoria": "Gates",
       "descricao": "Gates reconhecem violações gerais, não apenas exemplos conhecidos.",
       "origem": "Enunciado §2; fluxo 5; dicas finais",
       "criterio": "Kit oficial passa; casos independentes com nomes e formas diferentes são detectados.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Orquestrador agrega falhas de todas as ferramentas; AST resolve imports e acesso ao ambiente; arquivos próprios cobertos",
       "teste": "Executar kit-gates em Git limpo e baseline verde; acrescentar auditoria adversarial independente; repetir após mudar configuração.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/kit-details/G01-a-retorno-texto.log mostra G1 e G10; kit19/19 e adversarial17/17; auditoria independente",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "P1",
@@ -403,11 +403,11 @@
       "descricao": "Primeira regra própria motivada e exemplo versionado aplicável.",
       "origem": "Enunciado §2; fluxo 6",
       "criterio": "Motivação documentada; aplicação do exemplo faz gates falharem.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "G11 recursos locais fixos só config; fixtures/gates/G11-endpoint-fixo.ts.modelo",
       "teste": "Aplicar exemplo conforme README, capturar resultado e restaurar.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "README.md; docs/gates.md; docs/evidence/own-final.log; exit0",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "P2",
@@ -417,11 +417,11 @@
       "descricao": "Segunda regra própria motivada e exemplo versionado aplicável.",
       "origem": "Enunciado §2; fluxo 6",
       "criterio": "Regra distinta com motivação documentada e exemplo que provoca falha.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "G12 domínio independente; fixtures/gates/G12-dominio-infraestrutura.ts.modelo",
       "teste": "Aplicar exemplo conforme README, capturar resultado e restaurar.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "README.md; docs/gates.md; docs/evidence/own-final.log; exit0",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "H1",
@@ -431,11 +431,11 @@
       "descricao": "Hook fica ativo automaticamente após a subida de clone novo.",
       "origem": "Enunciado §2; aceite Gates",
       "criterio": "Nenhum passo extra de instalação do hook é necessário.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "git config core.hooksPath .githooks na subida",
       "teste": "Inspecionar hooksPath e hook após subir clone independente.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/hook/hook.json; hook instalado automaticamente no clone B",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "H2",
@@ -445,11 +445,11 @@
       "descricao": "Hook executa pelo menos tipo e lint e bloqueia commits inválidos.",
       "origem": "Enunciado §2; fluxo 7",
       "criterio": "Commit com erro de tipo bloqueado; outro com variável sem uso bloqueado; configuração confirma ambos os gates.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": ".githooks/pre-commit roda scripts/gates.mjs inteiro",
       "teste": "Executar exatamente os dois exemplos do fluxo oficial e desfazer os arquivos.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/hook/G1.log; docs/evidence/hook/G2.log; nenhum commit criado",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "D1",
@@ -459,11 +459,11 @@
       "descricao": "AGENTS.md na raiz com no máximo 60 linhas e conteúdo exigido.",
       "origem": "Enunciado §3; fluxo 10",
       "criterio": "Contém subir, derrubar, gates, contas da seed, regras de camada e referências de detalhes.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "AGENTS.md: 43 linhas, comandos/contas/camadas/índice",
       "teste": "Contar linhas; conferir conteúdo e testar todos os comandos/caminhos, preenchendo placeholders conforme instrução.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "AGENTS.md:44 linhas; comandos up/status/down/gates/own/kit executados; caminhos existem",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "D2",
@@ -473,11 +473,11 @@
       "descricao": "CLAUDE.md redireciona para AGENTS.md.",
       "origem": "Enunciado §3; fluxo 10",
       "criterio": "Instruções antigas contraditórias saem de cena.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "CLAUDE.md redireciona para AGENTS.md",
       "teste": "Inspecionar arquivo e destino; nova sessão para validar orientações atualizadas.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "CLAUDE.md",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "D3",
@@ -487,11 +487,11 @@
       "descricao": "README humano contém todas as seções obrigatórias.",
       "origem": "Enunciado Entregável",
       "criterio": "Como rodar/pré-requisitos/saída; contas; G1–G10 e próprias/ferramentas/exemplos; decisões de isolamento/refatoração/documentação; link dos incidentes.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "README.md reescrito com todas as seções do entregável",
       "teste": "Revisar checklist e executar comandos documentados.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "README.md",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "I1",
@@ -501,11 +501,11 @@
       "descricao": "Registrar pelo menos três erros reais de agentes e prevenção no harness.",
       "origem": "Enunciado §4; fluxo 10",
       "criterio": "Cada entrada explica ocorrido, mudança preventiva e hash de commit existente que altera scripts, gates, hook ou documentação para agentes.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Incidentes reais Prisma/sessão WSL/npm concorrente e prevenções",
       "teste": "Conferir proveniência de cada incidente e git show --stat de cada hash.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/incidentes.md; commits be517dc e e1d5c9f",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "C1",
@@ -515,11 +515,11 @@
       "descricao": "Preservar rotas, corpos, status e códigos de erro HTTP.",
       "origem": "Enunciado O que não pode mudar",
       "criterio": "Refatorações não alteram comportamento observável.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Refatoração conserva contrato; blackbox/ inalterado",
       "teste": "Blackbox oficial e revisão de contratos/diff; investigar regressões sem alterar testes oficiais.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/blackbox-a.log; docs/evidence/blackbox-b.log; docs/auditoria.md",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "C2",
@@ -529,11 +529,11 @@
       "descricao": "Preservar as três contas e IA fake por padrão sem chave.",
       "origem": "Enunciado O que não pode mudar",
       "criterio": "admin@balcao.dev/Admin@123; agente@balcao.dev/Agente@123; cliente@balcao.dev/Cliente@123; modo openai continua compilando.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Contas originais e AI_MODE=fake no runtime",
       "teste": "Autenticar três contas e executar triagem fake sem OPENAI_API_KEY; conferir compilação do modo real.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/blackbox-a.log; docs/evidence/blackbox-b.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "C3",
@@ -543,11 +543,11 @@
       "descricao": "Preservar stack e todas as pastas/entradas fixas.",
       "origem": "Enunciado O que não pode mudar; fluxo 11",
       "criterio": "Express, Prisma, Postgres, React, Vite; entradas e padrão de teste permanecem nos caminhos exigidos.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Express/Prisma/Postgres/React/Vite e entradas fixas preservadas",
       "teste": "Executar ls -d oficial e revisar manifests/diff.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "api/package.json; web/package.json; scripts/Dockerfile; docs/auditoria.md",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "C4",
@@ -557,11 +557,11 @@
       "descricao": "Não adicionar features nem alterar comportamento do front ou da API.",
       "origem": "Enunciado Fora de escopo",
       "criterio": "Mudanças restritas ao harness e refatorações necessárias; sem troca de framework, ORM ou banco.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Mudanças restritas ao harness e refatoração das dependências",
       "teste": "Auditoria do diff e jornadas de regressão.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/auditoria.md; git diff e515681 -- api/src web/src",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "E1",
@@ -585,11 +585,11 @@
       "descricao": "Executar com Linux/macOS, Docker, Git e Node LTS; desenvolver no WSL no Windows.",
       "origem": "Enunciado Tecnologias e restrições",
       "criterio": "Nenhuma dependência oculta exclusiva do host; demais ferramentas necessárias em containers.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Node e Docker somente; testes e desenvolvimento no WSL Ubuntu24.04",
       "teste": "Validar clone limpo no ambiente permitido e auditar scripts.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/clean-up.log; docs/evidence/clean-repeat.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "E3",
@@ -599,11 +599,11 @@
       "descricao": "Subir uma vez pelo README original antes das alterações.",
       "origem": "Enunciado O Balcão hoje",
       "criterio": "Tentativa inicial e resultados reais preservados.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "README original executado antes das alterações; migrations/seed/API/worker/front",
       "teste": "Referenciar registro do baseline e identificar seu commit.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidencias.md: baseline e diagnóstico",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X01",
@@ -613,11 +613,11 @@
       "descricao": "Manter matriz de todos os requisitos com evidências e commit validado.",
       "origem": "Prompt complementar §7",
       "criterio": "Requisito → implementação → teste → evidência → status; acadêmicos separados dos complementares.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Matriz com 39 acadêmicos e17 complementares",
       "teste": "Revisar cobertura da matriz contra ambos os anexos.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/requisitos.json",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X02",
@@ -627,11 +627,11 @@
       "descricao": "Manter estado persistente e instruções de retomada.",
       "origem": "Prompt complementar §21 e §27",
       "criterio": "Estado registra commits, fase, resultados, pendências, bloqueios, decisões, evidências e próxima ação.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Registro de estado e próxima ação",
       "teste": "Revisar docs/estado.md após marcos; verificar retomada sem depender do chat.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/estado.md",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X03",
@@ -641,11 +641,11 @@
       "descricao": "Realizar auditoria independente com ferramentas disponíveis e reavaliar correções.",
       "origem": "Prompt complementar §7.3 e §16",
       "criterio": "Auditor separado revisa fonte original e evidências sem editar implementação durante avaliação.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Auditor em sessão independente revisou enunciado, fonte e evidências; achados corrigidos e reavaliados",
       "teste": "Preservar relatório independente com achados, localização, reprodução e resultado de reavaliação.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/auditoria.md; docs/evidence/adversarial-final.log",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X04",
@@ -655,11 +655,11 @@
       "descricao": "Simular integralmente os 11 passos do avaliador no ambiente limpo.",
       "origem": "Prompt complementar §17–18; fluxo oficial",
       "criterio": "Ordem, comandos, dados e condições preservados; nenhuma etapa obrigatória omitida.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Onze passos do avaliador exercitados com clones/worktrees e contrato oficial",
       "teste": "Registrar evidência individual dos passos 1–11 vinculada à versão de entrega.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidencias.md; docs/evidence/",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X05",
@@ -669,11 +669,11 @@
       "descricao": "Estratégia baseada em requisitos e riscos, com resultados reais por categoria.",
       "origem": "Prompt complementar §13–15",
       "criterio": "PASS/FAIL/NOT RUN/BLOCKED/N/A não confundidos; testes pertinentes executados e limitações explícitas.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Testes reais unitários, contrato, UI, mutações, hook e isolamento",
       "teste": "Consolidar logs, códigos de saída, ambiente e commit; evitar ampliar escopo proibido.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/resultados.json; docs/evidencias.md",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X06",
@@ -697,11 +697,11 @@
       "descricao": "Produzir docs/relatorio-final.html didático e visual como material complementar.",
       "origem": "Prompt complementar §22.1–22.4",
       "criterio": "HTML5 responsivo em português, sem backend/credenciais/dependências de instalação, recursos essenciais sem CDN, acessível e imprimível; níveis leigo e técnico.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "HTML5 autocontido gerado a partir dos JSONs",
       "teste": "Abrir arquivo local e validar responsividade, navegação, legibilidade e impressão quando possível.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/relatorio-final.html; scripts/build-report.mjs",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X08",
@@ -711,11 +711,11 @@
       "descricao": "Explicar desafio, requisitos, pegadinhas, solução e funcionamento no relatório.",
       "origem": "Prompt complementar §22.5–22.10",
       "criterio": "Capa com status/commit; narrativa leiga; requisitos e evidências; riscos reais; solução e jornadas ilustradas.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Seções didáticas com requisitos/armadilhas/fluxos",
       "teste": "Revisão de conteúdo contra matriz e implementação.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/relatorio-final.html",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X09",
@@ -725,11 +725,11 @@
       "descricao": "Explicar arquitetura, tecnologias, uso de IA e cronologia reais.",
       "origem": "Prompt complementar §22.11–22.14",
       "criterio": "Diagramas leigo/técnico, papéis reais, ferramentas efetivamente utilizadas e timeline sem fabricação.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Arquitetura em dois níveis, tecnologias e agentes reais",
       "teste": "Confrontar texto com arquivos, histórico e registros de colaboração.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/relatorio-final.html",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X10",
@@ -739,11 +739,11 @@
       "descricao": "Mostrar demonstração real do resultado e comparação antes/depois.",
       "origem": "Prompt complementar §22.15–22.16",
       "criterio": "Screenshots autênticos da interface ou limitação explícita; comandos/respostas reais; simulações identificadas; nenhuma métrica inventada.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Cinco screenshots reais do navegador e antes/depois",
       "teste": "Validar mídias, resultados e proveniência.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/browser.json; docs/relatorio-final.html",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X11",
@@ -753,11 +753,11 @@
       "descricao": "Apresentar dashboard de testes e matriz visual de conformidade.",
       "origem": "Prompt complementar §22.17–22.18",
       "criterio": "Métricas apenas coletadas; status textual além de cores; relação requisito/solução/teste/evidência/resultado.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Dashboard derivado de métricas reais e matriz filtrável",
       "teste": "Recalcular contagens a partir da matriz e confrontar com logs.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/resultados.json; docs/requisitos.json",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X12",
@@ -767,11 +767,11 @@
       "descricao": "Explicar segurança, conceitos do MBA, entregáveis e execução.",
       "origem": "Prompt complementar §22.19–22.22",
       "criterio": "Apenas controles/conceitos comprovados; links reais; execução didática com comandos validados.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Segurança, conceitos do módulo e comandos de execução",
       "teste": "Revisar conteúdo e reproduzir comandos/links pertinentes.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/relatorio-final.html",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X13",
@@ -781,11 +781,11 @@
       "descricao": "Preparar apresentação acadêmica e declarar resultado real.",
       "origem": "Prompt complementar §22.23–22.24",
       "criterio": "Resumos de 30 segundos e 1 minuto, roteiro de 5 minutos, perguntas/respostas/glossário, limitações e participação da IA transparentes.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Roteiros30s/1min/5min, FAQ e glossário",
       "teste": "Revisar roteiro contra implementação e evidências.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/relatorio-final.html",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X14",
@@ -795,11 +795,11 @@
       "descricao": "Validar interatividade e HTML em navegador disponível.",
       "origem": "Prompt complementar §22.25–22.26",
       "criterio": "Menus, filtros, cópia, temas e demais controles presentes funcionam; imagens/links/JS e responsividade verificados; resultados registrados.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Playwright abre arquivo offline e testa interações, links, imagens, mobile e print",
       "teste": "Testar controles implementados e registrar browser, erros, screenshots e limitações.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/report-validation.json; scripts/validate-report.mjs",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X15",
@@ -809,11 +809,11 @@
       "descricao": "Separar conformidade acadêmica e conclusão complementar, sem aprovação sem prova.",
       "origem": "Prompt complementar §24–25",
       "criterio": "Percentual = obrigatórios comprovados/total; apenas os três vereditos autorizados; sem promessa de nota.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Métricas acadêmicas e complementares separadas sem estimativas",
       "teste": "Auditar contagens, pendências e evidências antes do veredito.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/requisitos.json; docs/relatorio-final.html",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X16",
@@ -823,11 +823,11 @@
       "descricao": "Entregar relatório executivo em português e instruções exatas de submissão.",
       "origem": "Prompt complementar §26",
       "criterio": "Informar repo/branch/commit, conformidade, testes, auditoria, entregáveis, caminho HTML, limitações e o que enviar; não enviar ao professor automaticamente.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Relatório executivo HTML e instruções precisas de submissão em português",
       "teste": "Conferir resposta final e links/caminhos.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/entrega.md; docs/relatorio-final.html",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     },
     {
       "id": "X17",
@@ -837,11 +837,11 @@
       "descricao": "Preservar evidências autênticas, alterações legítimas e histórico verdadeiro.",
       "origem": "Prompt complementar §3–5 e §12",
       "criterio": "Sem testes oficiais adulterados, evidências inventadas, force push indevido, segredos ou alegações falsas de paralelismo/independência.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Logs preservados inclusive falhas anteriores e commits autênticos",
       "teste": "Revisão de diff/histórico e proveniência dos registros.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "docs/evidence/; docs/incidentes.md",
+      "commit": "e1d5c9f (runtime/gates); materiais complementares no HEAD da entrega",
+      "status": "APROVADO"
     }
   ],
   "foraDeEscopo": [

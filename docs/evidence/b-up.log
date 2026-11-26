@@ -1,0 +1,153 @@
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.19.3) to ./node_modules/@prisma/client in 494ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.66kB done
+#1 DONE 0.0s
+
+#2 [web internal] load build definition from Dockerfile
+#2 transferring dockerfile: 622B 0.0s done
+#2 DONE 0.0s
+
+#3 [worker internal] load metadata for docker.io/library/node:24-bookworm-slim
+#3 DONE 0.0s
+
+#4 [api internal] load .dockerignore
+#4 transferring context: 101B done
+#4 DONE 0.0s
+
+#5 [web internal] load build context
+#5 transferring context: 1.18kB done
+#5 DONE 0.0s
+
+#6 [api internal] load build context
+#6 transferring context: 2.86kB done
+#6 DONE 0.0s
+
+#7 [worker base 1/2] FROM docker.io/library/node:24-bookworm-slim@sha256:873f586f3794f52281bd039bf02c048a0be08fde619338f9941bad1eb6b34530
+#7 resolve docker.io/library/node:24-bookworm-slim@sha256:873f586f3794f52281bd039bf02c048a0be08fde619338f9941bad1eb6b34530 0.0s done
+#7 DONE 0.0s
+
+#8 [api api 4/5] RUN npm ci && npx prisma generate
+#8 CACHED
+
+#9 [api api 2/5] COPY api/package.json api/package-lock.json ./
+#9 CACHED
+
+#10 [api api 1/5] WORKDIR /app/api
+#10 CACHED
+
+#11 [api api 3/5] COPY api/prisma ./prisma
+#11 CACHED
+
+#12 [api base 2/2] RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+#12 CACHED
+
+#13 [web web 2/4] COPY web/package.json web/package-lock.json ./
+#13 CACHED
+
+#14 [web web 3/4] RUN npm ci
+#14 CACHED
+
+#15 [web web 1/4] WORKDIR /app/web
+#15 CACHED
+
+#16 [api api 5/5] COPY api/src ./src
+#16 CACHED
+
+#17 [web web 4/4] COPY web/ ./
+#17 CACHED
+
+#18 [web] exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:a81abd3c5c23b747b4801da67303f98dbb3c44b81b31c4480e0d84dbc4001e62 done
+#18 exporting config sha256:930a495459808bb9b53c94be587dd3d21372882bb70acc1de46e8b8502f0ceb6 done
+#18 exporting attestation manifest sha256:7efb406891c68091698324f466b5526bcca15307fc26e3b146f53b8376022a11 0.0s done
+#18 exporting manifest list sha256:468c6e82fec546a153809784d6513862de2d36152a41e0d0c22823f1984c65a3 0.0s done
+#18 naming to docker.io/library/balcao-b719c51c742ad1dd-web:latest done
+#18 unpacking to docker.io/library/balcao-b719c51c742ad1dd-web:latest done
+#18 DONE 0.1s
+
+#19 [api] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:e3a870162f1e8545a1c00b4d8c79b4dbe5db7e25062d55ac5421d625ab218c54 done
+#19 exporting config sha256:8e533253712d81b5486714fdeb70f08558aef7cb3a6025e05829f13006988a55 done
+#19 exporting attestation manifest sha256:9fe5fe56604b7d7ab8285878d0b3a550cd0157b6e33bd5688dd3cffd42327fdc 0.0s done
+#19 exporting manifest list sha256:4086b683a1a86765ecf401e9b4dce4c3e336fde6c3018aa8464ca6bc9f691663 0.0s done
+#19 naming to docker.io/library/balcao-b719c51c742ad1dd-api:latest 0.0s done
+#19 unpacking to docker.io/library/balcao-b719c51c742ad1dd-api:latest done
+#19 DONE 0.1s
+
+#20 [worker] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:cebacca7949fe49b3f653bfff1a564747f2aa5d1f049f9247aa4d36edec95631 done
+#20 exporting config sha256:e228303d932ac491777719e4e1607947cc8129a666c190bb557e15683333173a done
+#20 exporting attestation manifest sha256:22b5a183a0e2f1a19ef63fc01302dad070bdd9d1a4c4748a0268802b7b67c358 0.0s done
+#20 exporting manifest list sha256:802bad380fdd23bec01e601889118b1d1322e78f34329f1cc6f16a2f1559bd26 0.0s done
+#20 naming to docker.io/library/balcao-b719c51c742ad1dd-worker:latest done
+#20 unpacking to docker.io/library/balcao-b719c51c742ad1dd-worker:latest done
+#20 DONE 0.1s
+
+#21 [api] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [web] resolving provenance for metadata file
+#22 DONE 0.0s
+
+#23 [worker] resolving provenance for metadata file
+#23 DONE 0.0s
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "balcao", schema "public" at "db:5432"
+
+4 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+seed ok: admin@balcao.dev, agente@balcao.dev, cliente@balcao.dev
+API: http://localhost:38771
+Front: http://localhost:33987
+Banco: balcao-b719c51c742ad1dd/balcao (localhost:39921)
+Anexos: /mnt/f/MBA/domando um legado para agentes/validacao-b/.balcao/uploads
+Worker: balcao-b719c51c742ad1dd-worker-1
+Estado: /mnt/f/MBA/domando um legado para agentes/validacao-b/.balcao/state.json
+ balcao-b719c51c742ad1dd-api  Built
+ balcao-b719c51c742ad1dd-web  Built
+ balcao-b719c51c742ad1dd-worker  Built
+ Network balcao-b719c51c742ad1dd_default  Creating
+ Network balcao-b719c51c742ad1dd_default  Created
+ Container balcao-b719c51c742ad1dd-db-1  Creating
+ Container balcao-b719c51c742ad1dd-db-1  Created
+ Container balcao-b719c51c742ad1dd-db-1  Starting
+ Container balcao-b719c51c742ad1dd-db-1  Started
+ Container balcao-b719c51c742ad1dd-db-1  Waiting
+ Container balcao-b719c51c742ad1dd-db-1  Healthy
+ Container balcao-b719c51c742ad1dd-web-1  Creating
+ Container balcao-b719c51c742ad1dd-db-1  Running
+ Container balcao-b719c51c742ad1dd-worker-1  Creating
+ Container balcao-b719c51c742ad1dd-api-1  Creating
+ Container balcao-b719c51c742ad1dd-api-1  Created
+ Container balcao-b719c51c742ad1dd-worker-1  Created
+ Container balcao-b719c51c742ad1dd-web-1  Created
+ Container balcao-b719c51c742ad1dd-web-1  Starting
+ Container balcao-b719c51c742ad1dd-db-1  Waiting
+ Container balcao-b719c51c742ad1dd-db-1  Waiting
+ Container balcao-b719c51c742ad1dd-web-1  Started
+ Container balcao-b719c51c742ad1dd-db-1  Healthy
+ Container balcao-b719c51c742ad1dd-db-1  Healthy
+ Container balcao-b719c51c742ad1dd-api-1  Starting
+ Container balcao-b719c51c742ad1dd-worker-1  Starting
+ Container balcao-b719c51c742ad1dd-worker-1  Started
+ Container balcao-b719c51c742ad1dd-api-1  Started
+ Container balcao-b719c51c742ad1dd-api-1  Waiting
+ Container balcao-b719c51c742ad1dd-worker-1  Waiting
+ Container balcao-b719c51c742ad1dd-web-1  Waiting
+ Container balcao-b719c51c742ad1dd-db-1  Waiting
+ Container balcao-b719c51c742ad1dd-worker-1  Healthy
+ Container balcao-b719c51c742ad1dd-db-1  Healthy
+ Container balcao-b719c51c742ad1dd-web-1  Healthy
+ Container balcao-b719c51c742ad1dd-api-1  Healthy

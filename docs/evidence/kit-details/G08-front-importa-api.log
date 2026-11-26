@@ -1,0 +1,10 @@
+
+> balcao-harness@1.0.0 gates
+> node scripts/gates.mjs
+
+G3: 33/33 testes aprovados
+
+Resumo dos gates (G1–G12):
+G8 web/src/id-do-item.ts — Import do backend: ../../api/src/domain/item-compartilhado
+G10 api/src/domain/item-compartilhado.ts — files: api/src/domain/item-compartilhado.ts
+G10 web/src/id-do-item.ts — files: web/src/id-do-item.ts
