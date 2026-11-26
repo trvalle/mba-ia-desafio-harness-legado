@@ -24,7 +24,7 @@ npm audit: API8 high/1 moderate e web1 high, zero critical. Esses alertas perman
 
 ## Estado de publicação
 
-Consolidação/versionamento e push finais em andamento. A resposta final informará o hash remoto confirmado. A matriz distingue os itens ainda pendentes de publicação; nenhuma nota do professor foi atribuída.
+APPROVED — READY FOR SUBMISSION. Os 39 requisitos acadêmicos e 17 complementares foram comprovados. Push inicial da entrega confirmado em 44770245796ef31ec1d1a7cb83a45c5c0b96da81; metadados e relatório final atualizados em commit posterior, informado na resposta final. Nenhuma nota oficial foi atribuída. Sem pendências de implementação ou validação obrigatória.
 
 ## Retomada e reprodução
 

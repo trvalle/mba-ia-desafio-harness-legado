@@ -120,3 +120,9 @@ possíveis violações ocultas ou uma nota oficial.
 **Pendência única de entrega nesta revisão:** consolidar e versionar os
 documentos/evidências finais e publicar essa consolidação na main do fork
 público. O auditor não confirmou atualização do remoto nem realizou o push.
+
+## Fechamento de publicação pelo integrador
+
+Este parágrafo é do agente integrador, separado do parecer independente acima. A entrega foi publicada na main do fork público e git ls-remote confirmou44770245796ef31ec1d1a7cb83a45c5c0b96da81. A matriz e o relatório foram então atualizados para refletir essa prova. O código runtime/gates permanece e1d5c9f, sem alterações posteriores; o hook repete G1–G12 nos commits de documentação. O hash final dos metadados é confirmado na resposta ao usuário.
+
+Os logs foram novamente produzidos em clone Linux persistente depois que o encerramento do WSL apagou /tmp. docs/evidence contém os resultados integrais, códigos0, commit validado e estado Git limpo. Nenhum resultado foi reconstruído como se fosse log original.

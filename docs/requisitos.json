@@ -6,7 +6,7 @@
     "enunciado": "Anexo 617f5a12-8949-48b8-91b2-d661d905c2c2/Texto colado.txt",
     "complementar": "Anexo 0db60046-0e0b-4f8d-9e24-18102f727646/Texto colado.txt"
   },
-  "politicaStatus": "39 acadêmicos e17 complementares, aprovados somente com provas. E1 e X06 aguardam publicação final. GA1–GA3 são IDs internos; regras próprias G11/G12 correspondem a P1/P2.",
+  "politicaStatus": "Todos os39 requisitos acadêmicos e17 complementares possuem provas. Runtime/gates em e1d5c9f; consolidação publicada inicialmente em4477024 e metadados finais no HEAD da main. GA1–GA3 são IDs internos; próprias G11/G12 correspondem a P1/P2.",
   "estadosPermitidos": [
     "PENDENTE",
     "APROVADO",
@@ -571,11 +571,11 @@
       "descricao": "Entregar fork público do repositório base com tudo na main.",
       "origem": "Enunciado Objetivo e Entregável",
       "criterio": "URL pública correta, relação de fork, branch main e arquivos/commits de entrega disponíveis remotamente.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Fork público de devfullcycle, branch main publicada",
       "teste": "Inspecionar remoto, visibilidade, branch e commit final publicado.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "GitHub API confirmou fork/public/main; git push origin main e git ls-remote confirmaram44770245796ef31ec1d1a7cb83a45c5c0b96da81",
+      "commit": "4477024",
+      "status": "APROVADO"
     },
     {
       "id": "E2",
@@ -683,11 +683,11 @@
       "descricao": "Auditar repositório, documentação, evidências e Git finais.",
       "origem": "Prompt complementar §19–20 e §23",
       "criterio": "Branch/commit/destino corretos, links/caminhos/comandos válidos, sem segredos, evidências da versão entregue.",
-      "implementacao": "A registrar após implementação verificada.",
+      "implementacao": "Revisão final Git, documentos, segredos, links, evidências e remoto",
       "teste": "Executar checklist final; repetir verificações afetadas por alterações posteriores.",
-      "evidencia": "Nenhuma evidência final vinculada. Consultar baseline somente para o diagnóstico inicial.",
-      "commit": null,
-      "status": "PENDENTE"
+      "evidencia": "git diff --check sem erros; contrato/kit oficiais sem diff; main remota igual local4477024; relatório validado",
+      "commit": "4477024",
+      "status": "APROVADO"
     },
     {
       "id": "X07",
