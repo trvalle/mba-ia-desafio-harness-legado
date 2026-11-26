@@ -1,0 +1,5 @@
+#!/bin/sh
+# G1 (tipos), G2 (lint) e os demais gates são obrigatórios a cada commit.
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+exec node scripts/gates.mjs

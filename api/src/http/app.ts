@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import { env } from '../config/env'
 import healthRoutes from './routes/health'
 import authRoutes from './routes/auth'
 import ticketRoutes from './routes/tickets'
@@ -9,7 +10,7 @@ import { errorHandler, notFoundHandler } from './errors'
 
 export const app = express()
 
-app.use(cors({ origin: 'http://localhost:5173' }))
+app.use(cors({ origin: env.WEB_ORIGIN }))
 app.use(express.json())
 
 app.use('/api/health', healthRoutes)

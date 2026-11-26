@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import { asyncHandler, HttpError } from '../errors'
+import { asyncHandler } from '../errors'
+import { HttpError } from '../../domain/errors'
 import { requireAuth, signToken } from '../middlewares/auth'
-import { AuthService, EmailTakenError, InvalidCredentialsError, loginSchema, registerSchema, serializeUser } from '../../services/auth-service'
-import { userRepository } from '../../repositories/user-repository'
+import { EmailTakenError, InvalidCredentialsError, loginSchema, registerSchema } from '../../services/auth-service'
+import { authService } from '../../composition'
 
 const router = Router()
-const authService = new AuthService(userRepository)
 
 router.post(
   '/register',
@@ -45,9 +45,9 @@ router.get(
   '/me',
   requireAuth,
   asyncHandler(async (req, res) => {
-    const user = await userRepository.findById(req.user.id)
+    const user = await authService.findById(req.user.id)
     if (!user) throw new HttpError(401, 'unauthorized', 'Usuário não encontrado')
-    res.json(serializeUser(user))
+    res.json(user)
   }),
 )
 

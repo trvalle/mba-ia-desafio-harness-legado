@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import { prisma } from '../../repositories/prisma'
+import { checkHealth } from '../../services/system-service'
 
 const router = Router()
 
 router.get('/', async (_req, res) => {
   try {
-    await prisma.$queryRaw`SELECT 1`
+    await checkHealth()
     res.json({ status: 'ok', db: 'ok' })
   } catch (err) {
     console.log('health: banco fora', err)

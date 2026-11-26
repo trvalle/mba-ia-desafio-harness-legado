@@ -30,7 +30,7 @@ export default function StatsPage() {
     if (user?.role !== 'admin') return
     getStats()
       .then(setStats)
-      .catch((err) => setError(err.message))
+      .catch((err) => setError(err instanceof Error ? err.message : String(err)))
   }, [])
 
   if (user?.role !== 'admin') return <p className="error">Acesso restrito ao admin.</p>

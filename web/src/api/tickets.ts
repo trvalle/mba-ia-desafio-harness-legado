@@ -1,7 +1,8 @@
+import { API_URL } from '../config/env'
 import { apiFetch, getToken } from './client'
-import type { TicketCategory, TicketPriority, TicketStatus, TriageStatus } from '../../../api/src/domain/ticket'
+import type { TicketCategory, TicketPriority, TicketStatus, TriageStatus } from './ticket-types'
 
-export type Ticket = {
+type Ticket = {
   id: string
   title: string
   description: string
@@ -15,7 +16,7 @@ export type Ticket = {
   updatedAt: string
 }
 
-export type Reply = {
+type Reply = {
   id: string
   ticketId: string
   authorId: string
@@ -76,7 +77,7 @@ export function suggestReply(id: string) {
 export async function uploadAttachment(id: string, file: File) {
   const form = new FormData()
   form.append('file', file)
-  const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/tickets/${id}/attachments`, {
+  const res = await fetch(`${API_URL}/api/tickets/${id}/attachments`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${getToken()}` },
     body: form,

@@ -1,11 +1,8 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '../repositories/prisma'
+import { env } from '../config/env'
 import { classifyTicket } from '../integrations/ai-client'
 
-const prisma = new PrismaClient({
-  datasources: { db: { url: process.env.DATABASE_URL } },
-})
-
-const interval = Number(process.env.TRIAGE_INTERVAL_MS || 2000)
+const interval = env.TRIAGE_INTERVAL_MS
 
 async function runOnce() {
   const tickets = await prisma.ticket.findMany({
@@ -22,8 +19,8 @@ async function runOnce() {
         data: { category: result.category, priority: result.priority, triageStatus: 'done' },
       })
       console.log(`chamado ${ticket.id} triado: ${result.category}/${result.priority}`)
-    } catch (err: any) {
-      console.log(`falha na triagem do chamado ${ticket.id}: ${err.message}`)
+    } catch (err) {
+      console.log(`falha na triagem do chamado ${ticket.id}: ${err instanceof Error ? err.message : String(err)}`)
       await prisma.ticket.update({ where: { id: ticket.id }, data: { triageStatus: 'failed' } })
     }
   }

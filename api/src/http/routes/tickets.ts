@@ -1,21 +1,16 @@
 import { Router } from 'express'
 import multer from 'multer'
-import OpenAI from 'openai'
-import { asyncHandler, HttpError } from '../errors'
+import { asyncHandler } from '../errors'
+import { HttpError } from '../../domain/errors'
 import { requireAuth } from '../middlewares/auth'
-import { TicketService } from '../../services/ticket-service'
-import { ticketRepository } from '../../repositories/ticket-repository'
-import { replyRepository } from '../../repositories/reply-repository'
-import { attachmentRepository } from '../../repositories/attachment-repository'
-import { AttachmentService } from '../../services/attachment-service'
-import { userRepository } from '../../repositories/user-repository'
+import { ticketService, attachmentService, authService } from '../../composition'
+import { Ticket, Reply } from '../../domain/ticket'
+import { suggestReply } from '../../integrations/ai-client'
 
 const router = Router()
-const ticketService = new TicketService(ticketRepository, replyRepository)
-const attachmentService = new AttachmentService(attachmentRepository, ticketService)
 const upload = multer({ storage: multer.memoryStorage() })
 
-export function toTicketJson(t: any) {
+function toTicketJson(t: Ticket) {
   return {
     id: t.id,
     title: t.title,
@@ -31,7 +26,7 @@ export function toTicketJson(t: any) {
   }
 }
 
-function toReplyJson(r: any) {
+function toReplyJson(r: Reply) {
   return {
     id: r.id,
     ticketId: r.ticketId,
@@ -47,7 +42,7 @@ router.use(requireAuth)
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const result = await ticketService.list(req.user, req.query)
+    const result = await ticketService.list(req.user, req.query as { status?: string; page?: string })
     res.json({ ...result, items: result.items.map(toTicketJson) })
   }),
 )
@@ -112,26 +107,11 @@ router.post(
       throw new HttpError(403, 'forbidden', 'Só atendentes e admins podem pedir sugestão')
     }
     const ticket = await ticketService.getById(req.user, req.params.id)
-    const customer = await userRepository.findById(ticket.customerId)
+    const customer = await authService.findById(ticket.customerId)
     const customerName = customer ? customer.name : 'cliente'
 
-    if (process.env.AI_MODE === 'openai') {
-      const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-      const completion = await openai.chat.completions.create({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content: 'Você é um atendente de suporte. Escreva uma resposta curta e educada, em português, para o chamado.',
-          },
-          { role: 'user', content: `Cliente: ${customerName}\nTítulo: ${ticket.title}\n\n${ticket.description}` },
-        ],
-      })
-      return res.json({ suggestion: completion.choices[0].message.content })
-    }
-
     res.json({
-      suggestion: `Olá, ${customerName}! Recebemos o seu chamado "${ticket.title}" e a nossa equipe já está analisando.`,
+      suggestion: await suggestReply({ customerName, title: ticket.title, description: ticket.description }),
     })
   }),
 )

@@ -15,7 +15,7 @@ export default function TicketsPage() {
   useEffect(() => {
     listTickets(status, page)
       .then(setData)
-      .catch((err) => setError(err.message))
+      .catch((err) => setError(err instanceof Error ? err.message : String(err)))
   }, [status, page])
 
   const totalPages = data ? Math.max(1, Math.ceil(data.total / data.pageSize)) : 1

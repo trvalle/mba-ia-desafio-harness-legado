@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "includeEntryExports": true,
+  "workspaces": {
+    "api": {
+      "entry": ["src/main.ts", "src/jobs/triage-worker.ts", "prisma/seed.ts", "src/**/*.test.ts", "test/**/*.test.ts"],
+      "project": ["src/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}", "prisma/**/*.ts", "test/**/*.ts", "*.{ts,mts,cts,js,mjs,cjs}"]
+    },
+    "web": {
+      "entry": ["src/main.tsx"],
+      "project": ["src/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}", "*.{ts,mts,cts,js,mjs,cjs}"]
+    }
+  }
+}

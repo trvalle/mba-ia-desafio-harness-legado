@@ -1,0 +1,1 @@
+export const enderecoDaApi = 'http://localhost:4000'

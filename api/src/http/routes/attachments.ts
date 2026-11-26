@@ -1,14 +1,9 @@
 import { Router } from 'express'
 import { asyncHandler } from '../errors'
 import { requireAuth } from '../middlewares/auth'
-import { AttachmentService } from '../../services/attachment-service'
-import { TicketService } from '../../services/ticket-service'
-import { attachmentRepository } from '../../repositories/attachment-repository'
-import { ticketRepository } from '../../repositories/ticket-repository'
-import { replyRepository } from '../../repositories/reply-repository'
+import { attachmentService } from '../../composition'
 
 const router = Router()
-const attachmentService = new AttachmentService(attachmentRepository, new TicketService(ticketRepository, replyRepository))
 
 router.get(
   '/:id/download',

@@ -1,0 +1,5 @@
+import type { Request } from 'express'
+
+export function identificadorDaRequisicao(req: Request): string {
+  return String(req.params.id)
+}

@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
+import { User } from '../domain/ticket'
 import { UserRepository } from '../repositories/user-repository'
 
 export class EmailTakenError extends Error {}
@@ -16,12 +17,17 @@ export const loginSchema = z.object({
   password: z.string(),
 })
 
-export function serializeUser(user: any) {
+function serializeUser(user: User) {
   return { id: user.id, name: user.name, email: user.email, role: user.role }
 }
 
 export class AuthService {
   constructor(private users: UserRepository) {}
+
+  async findById(id: string) {
+    const user = await this.users.findById(id)
+    return user ? serializeUser(user) : null
+  }
 
   async register(input: z.infer<typeof registerSchema>) {
     const existing = await this.users.findByEmail(input.email)

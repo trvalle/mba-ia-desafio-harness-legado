@@ -1,6 +1,6 @@
 import { apiFetch } from './client'
 
-export type User = {
+type User = {
   id: string
   name: string
   email: string

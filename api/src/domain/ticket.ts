@@ -1,4 +1,4 @@
-export type Role = 'customer' | 'agent' | 'admin'
+type Role = 'customer' | 'agent' | 'admin'
 
 export type TicketStatus = 'open' | 'in_progress' | 'resolved'
 
@@ -6,7 +6,7 @@ export type TicketCategory = 'billing' | 'technical' | 'account' | 'other'
 
 export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent'
 
-export type TriageStatus = 'pending' | 'done' | 'failed'
+type TriageStatus = 'pending' | 'done' | 'failed'
 
 export const TICKET_STATUSES: TicketStatus[] = ['open', 'in_progress', 'resolved']
 export const TICKET_CATEGORIES: TicketCategory[] = ['billing', 'technical', 'account', 'other']
@@ -29,4 +29,38 @@ export interface Ticket {
 export interface CurrentUser {
   id: string
   role: Role
+}
+
+export interface User {
+  id: string
+  name: string
+  email: string
+  passwordHash: string
+  role: Role
+  createdAt: Date
+}
+
+export interface Reply {
+  id: string
+  ticketId: string
+  authorId: string
+  body: string
+  createdAt: Date
+  author: Pick<User, 'id' | 'name' | 'role'>
+}
+
+export interface Attachment {
+  id: string
+  ticketId: string
+  uploaderId: string
+  originalName: string
+  storedName: string
+  mimeType: string
+  sizeBytes: number
+  createdAt: Date
+}
+
+export interface TicketDetails extends Ticket {
+  replies: Reply[]
+  attachments: Attachment[]
 }

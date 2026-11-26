@@ -1,13 +1,16 @@
 import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
-import type { Request } from 'express'
-import { HttpError } from '../http/errors'
+import { env } from '../config/env'
+import { HttpError } from '../domain/errors'
 import { CurrentUser } from '../domain/ticket'
 import { AttachmentRepository } from '../repositories/attachment-repository'
 import { TicketService } from './ticket-service'
 
-const uploadDir = process.env.UPLOAD_DIR || '/tmp/balcao/uploads'
+type UploadInput = {
+  user: CurrentUser
+  file?: { size: number; mimetype: string; originalname: string; buffer: Buffer }
+}
 
 const MAX_SIZE = 5 * 1024 * 1024
 const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'application/pdf', 'text/plain']
@@ -18,8 +21,8 @@ export class AttachmentService {
     private tickets: TicketService,
   ) {}
 
-  async upload(req: Request, ticketId: string) {
-    const user: CurrentUser = (req as any).user
+  async upload(req: UploadInput, ticketId: string) {
+    const user = req.user
     await this.tickets.getById(user, ticketId)
 
     const file = req.file
@@ -33,9 +36,9 @@ export class AttachmentService {
       throw new HttpError(415, 'unsupported_type', 'Tipo de arquivo não suportado')
     }
 
-    fs.mkdirSync(uploadDir, { recursive: true })
+    fs.mkdirSync(env.UPLOAD_DIR, { recursive: true })
     const storedName = crypto.randomUUID() + path.extname(file.originalname)
-    fs.writeFileSync(path.join(uploadDir, storedName), file.buffer)
+    fs.writeFileSync(path.join(env.UPLOAD_DIR, storedName), file.buffer)
 
     return this.attachments.create({
       ticketId,
@@ -54,9 +57,9 @@ export class AttachmentService {
     }
     try {
       await this.tickets.getById(user, attachment.ticketId)
-    } catch (err) {
+    } catch {
       throw new HttpError(404, 'not_found', 'Anexo não encontrado')
     }
-    return { attachment, filePath: path.join(uploadDir, attachment.storedName) }
+    return { attachment, filePath: path.join(env.UPLOAD_DIR, attachment.storedName) }
   }
 }
